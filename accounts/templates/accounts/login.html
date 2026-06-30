@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🤖 AI Chatbot</h1>
+
+        <h2>Login</h2>
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input
+        type="text"
+        name="username"
+        placeholder="Username"
+    >
+
+    <input
+        type="password"
+        name="password"
+        placeholder="Password"
+    >
+
+    <button type="submit">
+        Login
+    </button>
+
+</form>

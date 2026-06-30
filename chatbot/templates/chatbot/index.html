@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Chatbot</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'chatbot/css/style.css' %}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="main-container">
+
+        <!-- Heading -->
+        <div class="heading">
+
+            <div class="bot-icon">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <h1>AI Chatbot</h1>
+
+            <p>Your Intelligent Assistant. Ask me anything!</p>
+
+        </div>
+
+        <!-- Chat Card -->
+        <div class="chat-card">
+
+            <!-- Date -->
+            <div class="chat-date">
+                Today
+            </div>
+
+            <a href="{% url 'new_chat' %}" class="new-chat-btn">
+             + New Chat
+            </a>
+
+            <!-- Chat Area -->
+            <div class="chat-box" id="chat-box">
+
+                <!-- Bot Message -->
+                <div class="message bot">
+
+                    <div class="icon">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+
+                    <div class="text">
+                        Hello 👋 <br>
+                        I'm your AI Assistant.
+                        How can I help you today?
+                    </div>
+
+                </div>
+
+                <!-- User Message -->
+                <div class="message user">
+
+                    <div class="text">
+                        Hi! Tell me about yourself.
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-section">
+
+                {% csrf_token %}
+
+
+                <input
+                    type="text"
+                    id="user-input"
+                    placeholder="Type your message here..."
+                >
+
+                <button id="send-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Built with ❤️ using Django
+        </div>
+
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="{% static 'chatbot/js/script.js' %}"></script>
+</body>
+
+</html>
