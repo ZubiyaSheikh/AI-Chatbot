@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bookmarked Messages</title>
+
+    <link rel="stylesheet"
+          href="{% static 'chatbot/css/style.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="bookmark-container">
+
+    <div class="bookmark-top">
+
+        <h1>
+            <i class="fa-solid fa-bookmark"></i>
+            Bookmarked Messages
+        </h1>
+
+        <a href="{% url 'home' %}" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Chat
+
+        </a>
+
+    </div>
+
+    {% if bookmarks %}
+
+        {% for bookmark in bookmarks %}
+
+        <div class="bookmark-card">
+
+            <div class="bookmark-card-header">
+
+                <i class="fa-solid fa-comments"></i>
+
+                <span>
+
+                    {{ bookmark.message.chat.title }}
+
+                </span>
+
+            </div>
+
+            <div class="bookmark-content">
+
+                {{ bookmark.message.content|truncatechars:350 }}
+
+            </div>
+
+            <div class="bookmark-card-footer">
+
+                <small>
+
+                    Saved on
+
+                    {{ bookmark.created_at|date:"d M Y, h:i A" }}
+
+                </small>
+
+                <a
+                    href="{% url 'open_chat' bookmark.message.chat.id %}"
+                    class="open-chat-btn">
+
+                    Open Chat
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty-bookmarks">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+            <h2>No Bookmarks Yet</h2>
+
+            <p>
+
+                Bookmark important AI replies to see them here.
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

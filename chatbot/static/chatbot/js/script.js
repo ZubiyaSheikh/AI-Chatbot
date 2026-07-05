@@ -18,6 +18,14 @@ sendButton.addEventListener("click", async function () {
 
     userMessage.innerHTML = `
         <div class="bubble">
+        <button
+            class="bookmark-btn"
+            data-message-id=""
+            title="Bookmark">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+        </button>
             ${message}
         </div>
     `;
@@ -78,6 +86,14 @@ sendButton.addEventListener("click", async function () {
         </div>
 
         <div class="bubble">
+        <button
+            class="bookmark-btn"
+            data-message-id="${data.assistant_message_id}"
+            title="Bookmark">
+
+            <i class="fa-regular fa-bookmark"></i>
+
+        </button>
             ${marked.parse(data.response)}
         </div>
     `;
@@ -99,3 +115,141 @@ userInput.addEventListener("keydown", function (event) {
     }
 
 });
+/* ===========================
+   Search Chats
+=========================== */
+
+const searchInput = document.getElementById("search-chat");
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", function () {
+
+        const searchText = this.value.toLowerCase().trim();
+
+        const chatItems = document.querySelectorAll(".chat-item");
+
+        chatItems.forEach(function (chat) {
+
+            const title = chat.getAttribute("data-title").toLowerCase();
+
+            if (title.includes(searchText)) {
+
+                chat.style.display = "block";
+
+            } else {
+
+                chat.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+}
+
+/* ===========================
+   Bookmark Messages
+=========================== */
+
+document.addEventListener("click", async function (event) {
+
+    const button = event.target.closest(".bookmark-btn");
+
+    console.log("Bookmark button clicked");
+
+    if (!button) return;
+
+    const messageId = button.dataset.messageId;
+
+    const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+    const response = await fetch("/bookmark/", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+        },
+
+        body: JSON.stringify({
+            message_id: messageId
+        })
+
+    });
+
+    const data = await response.json();
+
+    const icon = button.querySelector("i");
+
+    if (data.status === "saved") {
+
+        icon.classList.remove("fa-regular");
+        icon.classList.add("fa-solid");
+
+    }
+
+    else if (data.status === "removed") {
+
+        icon.classList.remove("fa-solid");
+        icon.classList.add("fa-regular");
+
+    }
+});
+/* ===========================
+   Theme Toggle
+=========================== */
+
+const themeBtn = document.getElementById("theme-btn");
+
+// Apply saved theme
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+}
+
+themeBtn.addEventListener("click", function () {
+
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        localStorage.setItem("theme", "dark");
+
+        themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+
+    } else {
+
+        localStorage.setItem("theme", "light");
+
+        themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+
+    }
+
+});
+/* ===========================
+   Profile Dropdown
+=========================== */
+
+const profileBtn = document.getElementById("profile-btn");
+const profileMenu = document.querySelector(".profile-menu");
+
+if (profileBtn && profileMenu) {
+
+    profileBtn.addEventListener("click", function (e) {
+
+        e.stopPropagation();
+
+        profileMenu.classList.toggle("active");
+
+    });
+
+    document.addEventListener("click", function () {
+
+        profileMenu.classList.remove("active");
+
+    });
+
+}

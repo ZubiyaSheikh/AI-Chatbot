@@ -60,3 +60,28 @@ class Message(models.Model):
         # Display message content in Django Admin
         def __str__(self):
             return f"{self.sender}: {self.content[:50]}..."
+        
+class Bookmark(models.Model):
+    """
+    Stores bookmarked messages.
+    """
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    message = models.ForeignKey(
+        Message,
+        on_delete=models.CASCADE
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.user.username} - {self.message.id}"
