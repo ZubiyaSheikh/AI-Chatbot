@@ -22,9 +22,115 @@ body{
 
     background:linear-gradient(135deg,#dbeafe,#eff6ff,#ffffff);
 
-    min-height:100vh;
+    height:100vh;
 
-    padding:30px;
+    overflow:hidden;
+
+    padding: 0 10px 10px;
+
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+    max-width:1400px;
+    margin:10px auto 10px;
+    padding:10px 10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:linear-gradient(135deg,#0f172a,#172554);
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+/* Left */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.nav-logo{
+    width:58px;
+    height:58px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.08);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#60a5fa;
+    font-size:30px;
+}
+
+.nav-title h2{
+    color:white;
+    font-size:30px;
+    font-weight:600;
+}
+
+/* Center */
+
+.nav-center{
+    flex:1;
+    text-align:center;
+}
+
+.nav-center p{
+    color:#cbd5e1;
+    font-size:20px;
+    font-weight:400;
+}
+
+/* Right */
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.nav-right button,
+.nav-right a{
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.nav-right button:hover,
+.nav-right a:hover{
+
+    background:#2563eb;
+
+    transform:translateY(-2px);
 
 }
 
@@ -36,15 +142,15 @@ body{
 
     display:flex;
 
-    align-items:flex-start;
+    gap:10px;
 
-    gap:30px;
-
-    width:100%;
+    width:calc(100% - 20px);
 
     max-width:1400px;
 
-    margin:40px auto;
+    margin:0 auto;
+
+    height:calc(100vh - 110px);
 
 }
 
@@ -56,67 +162,20 @@ body{
 
     flex:1;
 
-    max-width:950px;
+    max-width:1400px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:0;
 
 }
-
 /* ===========================
    Heading
 =========================== */
 
-.heading{
 
-    text-align:center;
-
-    margin-bottom:30px;
-
-}
-
-.bot-icon{
-
-    width:75px;
-
-    height:75px;
-
-    margin:auto;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    border-radius:50%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:30px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-}
-
-.heading h1{
-
-    margin-top:18px;
-
-    font-size:40px;
-
-    color:#1e293b;
-
-}
-
-.heading p{
-
-    margin-top:8px;
-
-    color:#64748b;
-
-    font-size:17px;
-
-}
 
 /* ===========================
    Chat Card
@@ -132,11 +191,13 @@ body{
 
     box-shadow:0 15px 40px rgba(0,0,0,.12);
 
-    height:640px;
+    flex:1;
 
     display:flex;
 
     flex-direction:column;
+
+    overflow:hidden;
 
 }
 
@@ -165,6 +226,8 @@ body{
     overflow-y:auto;
 
     padding-right:10px;
+
+    min-height:0;
 
 }
 
@@ -226,7 +289,7 @@ body{
 
     padding:16px;
 
-    border-radius:18px;
+    border-radius:30px;
 
     line-height:1.6;
 
@@ -268,7 +331,7 @@ body{
 
     outline:none;
 
-    border-radius:15px;
+    border-radius:30px;
 
     padding:0 20px;
 
@@ -276,7 +339,7 @@ body{
 
     background:#f8fafc;
 
-    box-shadow:inset 0 0 6px rgba(0,0,0,.05);
+    box-shadow:inset 0 0 6px rgba(0,0,0,05);
 
 }
 
@@ -306,21 +369,7 @@ body{
 
 }
 
-/* ===========================
-   Footer
-=========================== */
 
-.footer{
-
-    text-align:center;
-
-    margin-top:20px;
-
-    color:#64748b;
-
-    font-size:14px;
-
-}
 
 
 
@@ -384,51 +433,39 @@ body{
 
     flex-direction:column;
 
-    align-self:flex-start;
-
-    height:640px;
+    align-self:stretch;
 
     box-shadow:0 15px 40px rgba(0,0,0,.15);
 
 }
-
-.sidebar-header h2{
-
-    text-align:center;
-
-    margin-bottom:20px;
-
-    font-size:24px;
-
-}
-
 /* ==========================================
    NEW CHAT BUTTON
 ========================================== */
 
 .sidebar-btn{
 
-    display:block;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
     width:100%;
+    height:56px;
 
-    padding:14px;
+    padding:0 18px;
 
     background:#2563eb;
-
     color:white;
+
+    border-radius:14px;
+
+    font-size:16px;
+    font-weight:600;
 
     text-decoration:none;
 
-    text-align:center;
-
-    border-radius:12px;
-
-    margin-bottom:15px;
+    margin-bottom:16px;
 
     transition:.3s;
-
-    font-weight:600;
 
 }
 
@@ -445,26 +482,52 @@ body{
 .search-chat{
 
     width:100%;
+    height:56px;
 
-    padding:12px 15px;
+    padding:0 18px;
 
     border:none;
-
     outline:none;
 
-    border-radius:10px;
+    border-radius:14px;
 
-    background:#1f2937;
-
+    background:#374151;
     color:white;
 
-    margin-bottom:20px;
+    font-size:16px;
+    font-weight:600;
+
+    margin-bottom:28px;
+
+    box-sizing:border-box;
 
 }
 
 .search-chat::placeholder{
 
     color:#9ca3af;
+
+}
+
+/* ===========================
+   Recent Chats Heading
+=========================== */
+
+.recent-heading{
+
+    margin:18px 0 12px;
+
+    padding-left:4px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#64748b;
+
+    text-transform:uppercase;
+
+    letter-spacing:0.5px;
 
 }
 
@@ -490,9 +553,9 @@ body{
 
     margin-bottom:10px;
 
-    background:#1f2937;
+    background:#eaf4ff;
 
-    border-radius:10px;
+    border-radius:30px;
 
     color:white;
 
@@ -510,14 +573,15 @@ body{
 
 .chat-item:hover{
 
-    background:#374151;
+    background:#dbeafe
 
 }
 
 .active-chat{
 
-    background:#2563eb !important;
-
+    background:#dbeafe !important;
+    color:#1e293b !important;
+    font-weight:600;
 }
 
 .empty-chat{
@@ -648,73 +712,8 @@ body{
    Header Icons
 =========================== */
 
-.heading{
-    position:relative;
-}
 
-.top-icons{
 
-    position:absolute;
-
-    top:0;
-
-    right:0;
-
-    display:flex;
-
-    gap:12px;
-
-}
-
-.top-icons button,
-.top-icons a{
-
-    width:22px;
-
-    height:22px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    font-size:10Spx;
-
-    color:#111827;
-
-    text-decoration:none;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.12);
-
-    transition:.3s;
-
-}
-
-.top-icons button:hover,
-.top-icons a:hover{
-
-    transform:scale(1.08);
-
-}
-
-.top-icons button:hover{
-
-    background:#2563eb;
-
-    color:white;
-
-    transform:translateY(-2px);
-
-}
 /* ===========================
    Bookmark Page
 =========================== */
@@ -1037,4 +1036,7 @@ body.dark-mode .footer{
 
     display:block;
 
+}
+#bookmark-btn i{
+    font-size: 12px;
 }
