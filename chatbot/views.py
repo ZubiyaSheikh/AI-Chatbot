@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 import json
+from django.views.generic import RedirectView
 
 # Gemini
 from .gemini import ask_gemini
