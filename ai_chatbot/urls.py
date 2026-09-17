@@ -19,11 +19,14 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
 
-   path("", RedirectView.as_view(pattern_name="register", permanent=False)),
+    # Redirect "/" → "/register/"
+    path("", RedirectView.as_view(url="/register/", permanent=False)),
+
+    # Accounts
     path("", include("accounts.urls")),
+
+    # Chatbot
+    path("", include("chatbot.urls")),
 ]
-
-
-

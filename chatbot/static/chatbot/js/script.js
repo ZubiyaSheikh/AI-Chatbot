@@ -43,8 +43,8 @@ sendButton.addEventListener("click", async function () {
 
     typingMessage.innerHTML = `
         <div class="icon">
-            🤖
-        </div>
+    <img src="/static/accounts/images/logo.png" alt="AI Logo">
+</div>
 
         <div class="bubble">
             AI is typing...
@@ -82,8 +82,8 @@ sendButton.addEventListener("click", async function () {
 
     botMessage.innerHTML = `
         <div class="icon">
-            🤖
-        </div>
+    <img src="/static/accounts/images/logo.png" alt="AI Logo">
+</div>
 
         <div class="bubble">
         <button
@@ -252,4 +252,28 @@ if (profileBtn && profileMenu) {
 
     });
 
+}
+
+function confirmDelete(event, url) {
+
+    event.preventDefault();
+
+    Swal.fire({
+        title: "Delete Chat?",
+        text: "This chat will be permanently deleted.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#dc2626",
+        cancelButtonColor: "#6b7280",
+        confirmButtonText: "Delete",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+
+    });
+
+    return false;
 }

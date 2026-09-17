@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.home, name="home"),
+   path("home/", views.home, name="home"),
 
     # Chat API
     path("chat/", views.chat, name="chat"),
@@ -12,4 +12,5 @@ urlpatterns = [
     "bookmark/",views.toggle_bookmark, name="toggle_bookmark"),
     path("bookmarks/", views.bookmarks, name="bookmarks"),
     path("logout/", views.logout_view, name="logout"),
+    path("chat/<int:chat_id>/delete/", views.delete_chat, name="delete_chat"),
 ]

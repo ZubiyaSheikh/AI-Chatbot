@@ -32,7 +32,7 @@
     <div class="nav-left">
 
         <div class="nav-logo">
-            <i class="fa-solid fa-robot"></i>
+            <img src="{% static 'accounts/images/logo.png' %}" alt="Logo">
         </div>
 
         <div class="nav-title">
@@ -46,7 +46,7 @@
 
     <div class="nav-center">
 
-        <p>Your Intelligent Assistant. Ask me anything!</p>
+        <p>Your <strong>Intelligent Assistant</strong>. Ask me anything!</p>
 
     </div>
 
@@ -71,12 +71,44 @@
 
             <div class="profile-dropdown">
 
-                <a href="{% url 'logout' %}" class="logout-link">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Logout</span>
-                </a>
+    <div class="profile-header">
 
-            </div>
+        <div class="profile-avatar">
+            {{ user.username|first|upper }}
+        </div>
+
+        <div class="profile-info">
+            <h4>{{ user.username }}</h4>
+            <p>{{ user.email }}</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <a href="{% url 'profile' %}" class="dropdown-link">
+        <i class="fa-regular fa-user"></i>
+        <span>My Profile</span>
+    </a>
+
+    <a href="{% url 'edit_profile' %}" class="dropdown-link">
+        <i class="fa-regular fa-pen-to-square"></i>
+        <span>Edit Profile</span>
+    </a>
+
+    <a href="{% url 'bookmarks' %}" class="dropdown-link">
+        <i class="fa-regular fa-bookmark"></i>
+        <span>Bookmarks</span>
+    </a>
+
+    <hr>
+
+    <a href="{% url 'logout' %}" class="logout-link">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+
+</div>
 
         </div>
 
@@ -115,13 +147,21 @@
 
             {% for chat in chats %}
 
-            <a href="{% url 'open_chat' chat.id %}"
-             class="chat-item {% if chat.id == active_chat_id %}active-chat{% endif %}"
-            data-title="{{ chat.title|lower }}">
+            <div class="chat-item {% if chat.id == active_chat_id %}active-chat{% endif %}"
+     data-title="{{ chat.title|lower }}">
 
-            {{ chat.title }}
+    <a href="{% url 'open_chat' chat.id %}" class="chat-title">
+        {{ chat.title }}
+    </a>
 
-            </a>
+    <a href="{% url 'delete_chat' chat.id %}"
+       class="delete-chat"
+       title="Delete Chat"
+       onclick="return confirmDelete(event, this.href)">
+        <i class="fa-solid fa-trash"></i>
+    </a>
+
+</div>
 
             {% empty %}
 
@@ -156,7 +196,7 @@
                         <div class="message bot">
 
     <div class="icon">
-        <i class="fa-solid fa-robot"></i>
+        <img src="{% static 'accounts/images/logo.png' %}" alt="Logo">
     </div>
 
     <div class="bubble">
@@ -204,7 +244,7 @@
                 <div class="message bot">
 
                     <div class="icon">
-                        <i class="fa-solid fa-robot"></i>
+                        <img src="{% static 'accounts/images/logo.png' %}" alt="Logo">
                     </div>
 
                     <div class="bubble">
@@ -245,6 +285,7 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{% static 'chatbot/js/script.js' %}"></script>
 </body>
 

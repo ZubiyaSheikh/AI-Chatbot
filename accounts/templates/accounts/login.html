@@ -8,37 +8,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Register</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="auth-wrapper">
 
-        <h1>🤖 AI Chatbot</h1>
+    <div class="blur blur-1"></div>
+    <div class="blur blur-2"></div>
 
-        <h2>Login</h2>
-<form method="POST">
+    <div class="auth-card">
+        <div class="auth-content">
+        <div class="logo">
+    <img src="{% static 'accounts/images/logo.png' %}" alt="AI Chatbot Logo">
+</div>
 
-    {% csrf_token %}
+<h1>Welcome Back</h1>
 
-    <input
-        type="text"
-        name="username"
-        placeholder="Username"
-    >
+<p class="subtitle">
+    Login to your account
+</p>
 
-    <input
-        type="password"
-        name="password"
-        placeholder="Password"
-    >
+        <form method="POST">
 
-    <button type="submit">
-        Login
-    </button>
+            {% csrf_token %}
 
-</form>
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+        </div>
+        <p>
+            Don't have an account?
+            <a href="/register/">Register</a>
+        </p>
+
+    </div>
+
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+        
+        
+    Swal.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}",
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+    background: "#111827",
+    color: "#ffffff",
+    width: "380px",
+    padding: "1rem",
+    showClass: {
+        popup: "animate__animated animate__fadeInRight"
+    },
+    hideClass: {
+        popup: "animate__animated animate__fadeOutRight"
+    }
+});
+
+        {% endfor %}
+    </script>
+    {% endif %}
+
+</body>
+
+</html>

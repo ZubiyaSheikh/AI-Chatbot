@@ -10,6 +10,7 @@ from .gemini import ask_gemini
 from django.views.decorators.http import require_POST
 # Models
 from .models import Chat, Message, Bookmark
+from django.contrib import messages
 
 
 @login_required(login_url="login")
@@ -233,3 +234,14 @@ def bookmarks(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
+
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url="login")
+def delete_chat(request, chat_id):
+    chat = get_object_or_404(Chat, id=chat_id, user=request.user)
+    chat.delete()
+
+    messages.success(request, "Chat deleted successfully.")
+    return redirect("home")

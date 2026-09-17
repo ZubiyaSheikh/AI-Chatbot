@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile</title>
+
+    <link rel="stylesheet" href="{% static 'chatbot/css/style.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <h2>My Profile</h2>
+
+        <div class="profile-avatar-large">
+            {{ user.username|first|upper }}
+        </div>
+
+        <h3>{{ user.username }}</h3>
+
+        <div class="profile-details">
+
+            <div class="profile-row">
+                <i class="fa-regular fa-user"></i>
+                <span>Username</span>
+                <strong>{{ user.username }}</strong>
+            </div>
+
+            <div class="profile-row">
+                <i class="fa-regular fa-envelope"></i>
+                <span>Email</span>
+                <strong>{{ user.email }}</strong>
+            </div>
+
+            <div class="profile-row">
+                <i class="fa-regular fa-calendar"></i>
+                <span>Joined On</span>
+                <strong>{{ user.date_joined|date:"F d, Y" }}</strong>
+            </div>
+
+        </div>
+
+        <a href="{% url 'edit_profile' %}" class="edit-profile-btn">
+            <i class="fa-regular fa-pen-to-square"></i>
+            Edit Profile
+        </a>
+
+        <a href="{% url 'home' %}" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Chat
+
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

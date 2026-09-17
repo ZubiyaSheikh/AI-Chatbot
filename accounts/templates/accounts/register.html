@@ -11,50 +11,67 @@
     <title>Register</title>
 
     <link rel="stylesheet" href="{% static 'accounts/css/auth.css' %}">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 
 <body>
 
-    <div class="container">
+<div class="auth-wrapper">
 
-        <h1>🤖 AI Chatbot</h1>
+    <div class="blur blur-1"></div>
+    <div class="blur blur-2"></div>
 
-        <h2>Create Account</h2>
+    <div class="auth-card">
 
-        <form method="post">
+        <div class="auth-content">
 
-            {% csrf_token %}
+            <div class="logo">
+                <img src="{% static 'accounts/images/logo.png' %}" alt="AI Chatbot Logo">
+            </div>
 
-            <input
-                type="text"
-                name="username"
-                placeholder="Username"
-            >
+            <h1>Create Account</h1>
 
-            <input
-                type="email"
-                name="email"
-                placeholder="Email"
-            >
+            <p class="subtitle">
+                Create your AI Chatbot account
+            </p>
 
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-            >
+            <form method="POST">
 
-            <input
-                type="password"
-                name="confirm_password"
-                placeholder="Confirm Password"
-            >
+                {% csrf_token %}
 
-            <button type="submit">
-                Register
-            </button>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                >
 
-        </form>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                >
+
+                <input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm Password"
+                >
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+        </div>
 
         <p>
             Already have an account?
@@ -62,6 +79,36 @@
         </p>
 
     </div>
+
+</div>
+
+{% if messages %}
+<script>
+    {% for message in messages %}
+    
+    Swal.fire({
+    icon: "{{ message.tags }}",
+    title: "{{ message }}",
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+    background: "#111827",
+    color: "#ffffff",
+    width: "380px",
+    padding: "1rem",
+    showClass: {
+        popup: "animate__animated animate__fadeInRight"
+    },
+    hideClass: {
+        popup: "animate__animated animate__fadeOutRight"
+    }
+});
+
+    {% endfor %}
+</script>
+{% endif %}
 
 </body>
 
