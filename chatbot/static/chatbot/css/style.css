@@ -899,7 +899,7 @@ body{
 
     gap:10px;
 
-    color:#2563eb;
+    color:#A855F7;
 
     font-size:18px;
 
@@ -933,7 +933,7 @@ body{
 
     text-decoration:none;
 
-    background:#2563eb;
+    background:linear-gradient(135deg,#7C3AED,#A855F7);
 
     color:white;
 
@@ -949,7 +949,7 @@ body{
 
 .open-chat-btn:hover{
 
-    background:#1d4ed8;
+    background:#A855F7;
 
 }
 
